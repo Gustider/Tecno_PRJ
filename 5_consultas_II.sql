@@ -63,5 +63,29 @@ numérico que, como máximo, contenga 2
 decimales.
 */
 
+SELECT FacturaID, Letra, Número, ClienteID, Fecha, MONTO, ROUND(MONTO * 0.21, 2) AS IVA 
+FROM facturas;
 
+/* 
+Modificar la consulta anterior, agregando una nueva
+columna con el nombre NETO, que calcule el total a
+pagar por cada cliente por las compras realizadas
+(es decir, sumándole el IVA al cargo original,
+manteniendo como máximo 2 decimales).
+*/
 
+SELECT FacturaID, Letra, Número, ClienteID, Fecha, MONTO, ROUND(MONTO * 0.21, 2) AS IVA,
+ROUND(MONTO * 1.21, 2) AS NETO 
+FROM facturas;
+
+/*
+Modificar la consulta anterior, agregando una nueva
+columna con el nombre REDONDEO A FAVOR
+CLIENTE que devuelva el valor entero inferior del
+neto calculado anteriormente.
+*/
+
+SELECT FacturaID, Letra, Número, ClienteID, Fecha, MONTO, ROUND(MONTO * 0.21, 2) AS IVA,
+ROUND(MONTO * 1.21, 2) AS NETO,
+FLOOR(ROUND(MONTO * 1.21, 2)) AS 'Redondeo a favor cliente' 
+FROM facturas;
